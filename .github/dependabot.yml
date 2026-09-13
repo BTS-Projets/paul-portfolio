@@ -1,0 +1,16 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: cron
+      cronjob: "0 5 * * *"
+      timezone: Europe/Paris
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: cron
+      cronjob: "0 5 * * *"
+      timezone: Europe/Paris
