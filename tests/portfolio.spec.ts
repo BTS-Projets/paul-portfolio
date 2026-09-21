@@ -10,91 +10,84 @@ function monitorBrowserErrors(page: Page): () => void {
   return () => expect(errors).toEqual([])
 }
 
-test('prérend le contenu et les métadonnées principales', async ({ page, request }) => {
+test('charge le portfolio et permet la navigation depuis la sidebar', async ({ page, request }) => {
   const response = await request.get('/')
   expect(response.ok()).toBe(true)
   const html = await response.text()
-  expect(html).toContain('Développement logiciel')
+  expect(html).toContain('Paul Muller')
   expect(html).toContain('Portfolio professionnel de Paul Muller')
 
   const expectNoBrowserErrors = monitorBrowserErrors(page)
   await page.goto('/')
   await expect(page).toHaveTitle('Paul Muller — Portfolio | BTS SIO SLAM')
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Développement logiciel')
-  await page.getByRole('link', { name: 'Voir mes réalisations' }).click()
-  await expect(page).toHaveURL(/#realisations$/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Paul Muller' })).toBeVisible()
+
+  const sidebar = page.locator('.site-sidebar')
+  await expect(sidebar).toBeVisible()
+  await sidebar.getByRole('link', { name: 'Parcours', exact: true }).click()
+  await expect(page).toHaveURL(/#parcours$/)
+  await expect(page.getByRole('heading', { name: 'Parcours' })).toBeInViewport()
+  await expect(sidebar.getByRole('link', { name: 'Parcours', exact: true })).toHaveAttribute(
+    'aria-current',
+    'location',
+  )
+
+  const projectsLink = sidebar.getByRole('link', { name: /Réalisations BTS/ })
+  await expect(projectsLink).toHaveAttribute('href', 'https://bts.paulmuller.dev/')
+  await expect(projectsLink).toHaveAttribute('target', '_blank')
   expectNoBrowserErrors()
 })
 
-test('filtre les réalisations depuis les compétences et réinitialise les filtres', async ({ page }) => {
-  const expectNoBrowserErrors = monitorBrowserErrors(page)
-  await page.goto('/')
+test('expose le tableau de synthèse officiel avec ses actions', async ({ page }) => {
+  await page.goto('/#tableau-synthese')
 
-  await page.getByTitle('Afficher les projets utilisant JavaScript').click()
-  await expect(page).toHaveURL(/#realisations$/)
-  await expect(page.getByLabel('Technologie', { exact: true })).toHaveValue('JavaScript')
-  await expect(page.getByText('7 réalisations', { exact: true })).toBeVisible()
-  await expect(page.locator('.project-card')).toHaveCount(7)
+  const viewer = page.getByTitle('Tableau de synthèse officiel E5 de Paul Muller')
+  await expect(viewer).toBeVisible()
+  await expect(viewer).toHaveAttribute('data', '/documents/tableau-synthese-e5.pdf')
 
-  await page.getByRole('button', { name: 'Personnel', exact: true }).click()
-  await expect(page.getByText('Aucune réalisation ne correspond à ces filtres.')).toBeVisible()
-  await page.getByRole('button', { name: 'Afficher toutes les réalisations' }).click()
-  await expect(page.getByText('12 réalisations', { exact: true })).toBeVisible()
+  const fullScreenLink = page.getByRole('link', { name: /Ouvrir en plein écran/ })
+  await expect(fullScreenLink).toHaveAttribute('href', '/documents/tableau-synthese-e5.pdf')
+  await expect(fullScreenLink).toHaveAttribute('target', '_blank')
 
-  await page.getByLabel('Compétence E5', { exact: true }).selectOption('B1.1')
-  await expect(page.getByText('Aucune réalisation ne correspond à ces filtres.')).toBeVisible()
-  await page.getByRole('button', { name: 'Afficher toutes les réalisations' }).click()
-  await expect(page.getByText('12 réalisations', { exact: true })).toBeVisible()
-  expectNoBrowserErrors()
+  const downloadLink = page.getByRole('link', { name: 'Télécharger le PDF' })
+  await expect(downloadLink).toHaveAttribute('href', '/documents/tableau-synthese-e5.pdf')
+  await expect(downloadLink).toHaveAttribute('download', 'tableau-synthese-e5.pdf')
 })
 
-test('synchronise le dialogue avec l’URL et restitue le focus', async ({ page }) => {
+test('gère le menu mobile et la navigation critique au clavier', async ({ page }) => {
   const expectNoBrowserErrors = monitorBrowserErrors(page)
-  await page.goto('/')
-
-  const trigger = page.locator('[data-project-trigger="cpascher"]')
-  await trigger.click()
-  await expect(page).toHaveURL(/\?projet=cpascher/)
-  await expect(page.getByRole('dialog')).toBeVisible()
-  await expect(page.getByRole('dialog').getByRole('heading', { name: 'CPasCher' })).toBeVisible()
-
-  await page.keyboard.press('Escape')
-  await expect(page.getByRole('dialog')).not.toBeVisible()
-  await expect(page).not.toHaveURL(/projet=/)
-  await expect(trigger).toBeFocused()
-
-  await page.goto('/?projet=heavencube')
-  await expect(page.getByRole('dialog').getByRole('heading', { name: 'HeavenCube' })).toBeVisible()
-  await page.getByRole('button', { name: 'Fermer la fiche du projet' }).click()
-  await expect(page).not.toHaveURL(/projet=/)
-  expectNoBrowserErrors()
-})
-
-test('respecte et mémorise le thème, puis gère le menu mobile au clavier', async ({ page }) => {
-  const expectNoBrowserErrors = monitorBrowserErrors(page)
-  await page.emulateMedia({ colorScheme: 'dark' })
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
-  await page.evaluate(() => window.localStorage.clear())
-  await page.reload()
 
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-  await page.emulateMedia({ colorScheme: 'light' })
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
-  await page.emulateMedia({ colorScheme: 'dark' })
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-  await page.getByLabel('Choisir le thème').selectOption('light')
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
-  await page.reload()
-  await expect(page.getByLabel('Choisir le thème')).toHaveValue('light')
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+  await page.keyboard.press('Tab')
+  const skipLink = page.getByRole('link', { name: 'Aller au contenu principal' })
+  await expect(skipLink).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(page.locator('#contenu')).toBeFocused()
 
-  const menuButton = page.locator('.menu-button')
-  await menuButton.click()
+  const menuButton = page.getByRole('button', { name: 'Ouvrir la navigation' })
+  await menuButton.focus()
+  await page.keyboard.press('Enter')
   await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-  await expect(page.getByRole('navigation', { name: 'Navigation principale' })).toBeVisible()
+
+  const drawer = page.getByRole('dialog', { name: 'Portfolio' })
+  await expect(drawer).toBeVisible()
+  await expect(drawer.getByRole('link', { name: 'Accueil', exact: true })).toBeFocused()
+  await expect(drawer.getByRole('link', { name: /Réalisations BTS/ })).toHaveAttribute(
+    'href',
+    'https://bts.paulmuller.dev/',
+  )
+
   await page.keyboard.press('Escape')
+  await expect(drawer).not.toBeVisible()
   await expect(menuButton).toHaveAttribute('aria-expanded', 'false')
   await expect(menuButton).toBeFocused()
+
+  await page.keyboard.press('Enter')
+  const parcoursLink = drawer.getByRole('link', { name: 'Parcours', exact: true })
+  await parcoursLink.focus()
+  await page.keyboard.press('Enter')
+  await expect(drawer).not.toBeVisible()
+  await expect(page).toHaveURL(/#parcours$/)
   expectNoBrowserErrors()
 })

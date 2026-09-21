@@ -3,32 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f8fa" />
     <link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
-    <script>
-      ;(() => {
-        const storageKey = 'paul-portfolio-theme'
-        let preference = 'system'
-
-        try {
-          const savedPreference = localStorage.getItem(storageKey)
-          if (savedPreference === 'light' || savedPreference === 'dark') preference = savedPreference
-        } catch {
-          // The system theme remains available when storage is blocked.
-        }
-
-        const theme =
-          preference === 'system'
-            ? matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light'
-            : preference
-
-        document.documentElement.dataset.theme = theme
-        document.documentElement.style.colorScheme = theme
-      })()
-    </script>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">

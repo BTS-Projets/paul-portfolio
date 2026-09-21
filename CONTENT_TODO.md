@@ -4,13 +4,10 @@ Cette liste regroupe uniquement les informations encore absentes ou à valider a
 
 - Définir le thème, la problématique, la méthode, les sources et les mots-clés de la veille technologique.
 - Ajouter des entrées de veille réellement datées et sourcées.
-- Déposer le CV public dans `public/documents/`, puis le déclarer dans `src/data/documents.ts`.
-- Ajouter le tableau de synthèse officiel E5 lorsqu’il sera prêt à être publié.
+- Déposer le tableau de synthèse officiel E5 dans `static/documents/tableau-synthese-e5.pdf` lorsqu’il sera prêt à être publié.
+- Ajouter le CV public uniquement si une section ou une page dédiée est prévue ultérieurement.
 - Ajouter une attestation de stage uniquement si une version destinée au public est fournie.
-- Valider manuellement les associations définitives entre réalisations et compétences E5 dans `src/lib/data/projects.ts`.
-- Ajouter les réalisations de BTS 2 au fil de l’année.
-- Compléter le contexte, le besoin, la contribution personnelle, les résultats et le retour d’expérience des projets BTS 1.
-- Sélectionner les captures d’écran effectivement autorisées à être publiées et les ajouter aux projets concernés.
-- Définir le projet professionnel après le BTS dans `src/lib/data/profile.ts`.
+- Créer les pages `/experiences/<slug>` uniquement lorsque leur contenu public détaillé sera disponible.
+- Définir le projet professionnel après le BTS dans `src/lib/data/profil.ts`.
 
 Les données confirmées dans le brief — domaine `paulmuller.dev`, spécialité SIN, établissements, périodes et adresse email professionnelle — sont déjà intégrées.

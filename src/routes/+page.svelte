@@ -1,35 +1,26 @@
 <script lang="ts">
-  import SiteFooter from '$lib/components/SiteFooter.svelte'
-  import SiteHeader from '$lib/components/SiteHeader.svelte'
-  import AboutSection from '$lib/sections/AboutSection.svelte'
-  import ContactSection from '$lib/sections/ContactSection.svelte'
-  import DocumentsSection from '$lib/sections/DocumentsSection.svelte'
-  import E5Section from '$lib/sections/E5Section.svelte'
-  import ExperienceSection from '$lib/sections/ExperienceSection.svelte'
-  import HeroSection from '$lib/sections/HeroSection.svelte'
-  import JourneySection from '$lib/sections/JourneySection.svelte'
-  import ProjectsSection from '$lib/sections/ProjectsSection.svelte'
-  import SkillsSection from '$lib/sections/SkillsSection.svelte'
-  import WatchSection from '$lib/sections/WatchSection.svelte'
-
-  let selectedTechnology = $state('all')
-
-  function filterProjectsByTechnology(technology: string): void {
-    selectedTechnology = technology
-    window.location.hash = 'realisations'
-  }
+  import Footer from '$lib/components/footer.svelte'
+  import Sidebar from '$lib/components/sidebar.svelte'
+  import SectionAccueil from '$lib/sections/sectionAccueil.svelte'
+  import SectionAPropos from '$lib/sections/sectionAPropos.svelte'
+  import SectionCompetences from '$lib/sections/sectionCompetences.svelte'
+  import SectionContact from '$lib/sections/sectionContact.svelte'
+  import SectionExperiences from '$lib/sections/sectionExperiences.svelte'
+  import SectionParcours from '$lib/sections/sectionParcours.svelte'
+  import SectionTableauSynthese from '$lib/sections/sectionTableauSynthese.svelte'
+  import SectionVeille from '$lib/sections/sectionVeille.svelte'
 </script>
 
 <svelte:head>
   <title>Paul Muller — Portfolio | BTS SIO SLAM</title>
   <meta
     name="description"
-    content="Portfolio professionnel de Paul Muller, étudiant en BTS SIO option SLAM : parcours, réalisations, compétences E5 et veille technologique."
+    content="Portfolio professionnel de Paul Muller, étudiant en BTS SIO option SLAM : parcours, compétences, expérience et veille technologique."
   />
   <meta property="og:title" content="Paul Muller — Portfolio | BTS SIO SLAM" />
   <meta
     property="og:description"
-    content="Parcours, réalisations et professionnalisation en BTS SIO option SLAM."
+    content="Parcours, compétences et professionnalisation en BTS SIO option SLAM."
   />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -37,21 +28,18 @@
   <link rel="canonical" href="https://paulmuller.dev/" />
 </svelte:head>
 
-<a class="skip-link" href="#contenu">Aller au contenu</a>
-<SiteHeader />
-<main id="contenu" tabindex="-1">
-  <HeroSection />
-  <AboutSection />
-  <JourneySection />
-  <SkillsSection onFilter={filterProjectsByTechnology} />
-  <ProjectsSection
-    technology={selectedTechnology}
-    onTechnologyChange={(technology) => (selectedTechnology = technology)}
-  />
-  <ExperienceSection />
-  <E5Section />
-  <WatchSection />
-  <DocumentsSection />
-  <ContactSection />
-</main>
-<SiteFooter />
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<Sidebar />
+<div class="page-shell">
+  <main id="contenu" tabindex="-1">
+    <SectionAccueil />
+    <SectionAPropos />
+    <SectionParcours />
+    <SectionCompetences />
+    <SectionExperiences />
+    <SectionVeille />
+    <SectionTableauSynthese />
+    <SectionContact />
+  </main>
+  <Footer />
+</div>
