@@ -1,16 +1,17 @@
 # Portfolio professionnel de Paul Muller
 
-Portfolio statique principal de Paul Muller, étudiant en BTS SIO option SLAM (2025-2027). Le site présente le parcours, les réalisations, l’expérience professionnelle, la veille et une représentation configurable des compétences de l’épreuve E5.
+Portfolio statique de soutenance de Paul Muller, étudiant en BTS SIO option SLAM (2025-2027). Le site privilégie une lecture claire sur vidéo-projecteur : profil, parcours, compétences, expérience, veille et tableau de synthèse officiel.
 
-La matrice web E5 facilite la navigation : elle ne remplace pas le tableau de synthèse officiel de l’Éducation nationale.
+Les réalisations BTS détaillées sont présentées séparément sur [bts.paulmuller.dev](https://bts.paulmuller.dev/).
 
 ## Stack
 
-- Vue.js 3 avec Composition API
-- TypeScript
-- Vite
-- CSS natif structuré
-- ESLint et `vue-tsc`
+- Svelte 5 et SvelteKit 2 avec runes
+- TypeScript strict et Vite
+- `@sveltejs/adapter-static`
+- CSS natif
+- ESLint, Prettier et `svelte-check`
+- Playwright pour les parcours E2E critiques
 - GitHub Pages
 
 ## Commandes
@@ -19,54 +20,62 @@ La matrice web E5 facilite la navigation : elle ne remplace pas le tableau de sy
 npm ci
 npm run dev
 npm run lint
-npm run typecheck
+npm run check
 npm run build
+npx playwright install chromium
+npm run test:e2e
 ```
 
-Le build statique est généré dans `dist/`.
+Le build statique précompressé est généré dans `build/`.
 
 ## Organisation
 
 ```text
 src/
-├── components/   Composants réutilisables
-├── composables/  Logique de thème
-├── data/         Contenu éditorial typé
-├── sections/     Grandes sections de la page
-├── styles/       Feuille de style globale et impression
-└── types/        Interfaces TypeScript
-public/
-└── documents/    Documents explicitement destinés au public
+├── lib/
+│   ├── components/  Sidebar et composants réutilisables
+│   ├── data/        Contenu éditorial typé
+│   ├── sections/    Sections de la soutenance
+│   ├── styles/      Design, responsive et impression
+│   └── types/       Modèles TypeScript
+├── routes/          Route statique et layout global
+└── app.html         Gabarit HTML global
+static/
+├── documents/       Documents explicitement destinés au public
+├── CNAME            Domaine GitHub Pages
+└── favicon.svg
 ```
+
+Le modèle `Experience` accepte un `detailPath` facultatif au format `/experiences/<slug>`. Une page détaillée pourra ainsi être liée lorsque son contenu public sera disponible, sans modifier la section principale.
 
 ## Maintenir le contenu
 
-### Ajouter une réalisation
+### Ajouter une expérience
 
-Ajouter un objet conforme à l’interface `Project` dans `src/data/projects.ts`. Les champs détaillés sont facultatifs : l’interface n’affiche pas les blocs absents. Utiliser `category: 'bts2'` pour une future réalisation de deuxième année.
-
-### Associer une compétence E5
-
-Après validation manuelle, ajouter l’identifiant concerné (`B1.1` à `B1.6`) dans `competencyIds` du projet. Ne pas déduire automatiquement une compétence à partir des technologies utilisées. `e5Candidate` détermine si la réalisation apparaît dans la matrice.
+Ajouter un objet conforme à `Experience` dans `src/lib/data/experiences.ts`. La page d’accueil reste synthétique : contexte, résumé, domaines et technologies. Renseigner `detailPath` uniquement lorsqu’une route détaillée existe réellement.
 
 ### Ajouter une entrée de veille
 
-Définir le sujet dans `src/data/watch.ts`, puis ajouter un objet `WatchEntry` avec une vraie date, une source nommée et une URL vérifiable. Aucune entrée non sourcée ne doit être publiée.
+Définir le sujet et l’objectif dans `src/lib/data/veille.ts`, puis ajouter un objet `WatchEntry` avec une vraie date, une source nommée et une URL vérifiable.
 
-### Ajouter un document
+### Publier le tableau de synthèse E5
 
-1. Placer le fichier public dans `public/documents/`.
-2. Le déclarer dans `src/data/documents.ts`.
-3. Vérifier qu’il ne contient aucune donnée confidentielle.
+Placer le document officiel à l’emplacement exact :
+
+```text
+static/documents/tableau-synthese-e5.pdf
+```
+
+La section utilise le viewer PDF natif du navigateur et fournit des liens d’ouverture et de téléchargement. Aucun faux document ne doit être ajouté pour remplir cet emplacement.
 
 ## GitHub Pages et domaine
 
-Le workflow `.github/workflows/deploy-pages.yml` installe avec `npm ci`, exécute le lint et le typecheck, construit le site, puis publie `dist/` avec les actions GitHub Pages officielles. Vite utilise des chemins d’assets relatifs afin de fonctionner avec le domaine personnalisé comme avec l’URL Pages du repository.
+Le workflow `.github/workflows/deploy-pages.yml` installe les dépendances, exécute le lint, `svelte-check`, le build et les tests E2E, puis publie `build/` avec les actions GitHub Pages officielles.
 
-Le domaine confirmé `paulmuller.dev` est déclaré dans `public/CNAME`. Pour le modifier, mettre à jour ce fichier, les balises `canonical` et `og:url` dans `index.html`, puis configurer le même domaine dans les paramètres GitHub Pages et chez le fournisseur DNS.
+Le domaine `paulmuller.dev` reste déclaré dans `static/CNAME`. Le site est entièrement prérendu et les chemins d’assets restent compatibles avec GitHub Pages.
 
 ## Confidentialité
 
-Aucune note brute, capture interne, ticket, code, lien privé, procédure ou donnée d’infrastructure issue d’un stage ne doit être commitée. Seuls les documents explicitement préparés pour une publication publique peuvent être placés dans `public/`.
+Aucune note brute, capture interne, ticket, code, lien privé, procédure ou donnée d’infrastructure issue d’un stage ne doit être commitée. Seuls les documents explicitement préparés pour une publication publique peuvent être placés dans `static/`.
 
 Les informations restant à compléter sont centralisées dans [CONTENT_TODO.md](CONTENT_TODO.md).

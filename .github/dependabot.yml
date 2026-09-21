@@ -5,10 +5,9 @@ updates:
     directory: /
     schedule:
       interval: cron
-      cronjob: "0 5 * * *"
+      cronjob: '0 5 * * *'
       timezone: Europe/Paris
-    # TypeScript 7.0 ne fournit pas encore l'API requise par Vue et typescript-eslint.
-    # Retirer cette règle lorsque ces outils annonceront leur compatibilité.
+    # SvelteKit 2 et typescript-eslint 8 prennent actuellement en charge TypeScript 6 au maximum.
     ignore:
       - dependency-name: typescript
         update-types:
@@ -18,5 +17,5 @@ updates:
     directory: /
     schedule:
       interval: cron
-      cronjob: "0 5 * * *"
+      cronjob: '0 5 * * *'
       timezone: Europe/Paris

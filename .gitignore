@@ -38,8 +38,11 @@ pnpm-debug.log*
 dist/
 build/
 out/
+.svelte-kit/
 
 coverage/
+playwright-report/
+test-results/
 
 .cache/
 .parcel-cache/
