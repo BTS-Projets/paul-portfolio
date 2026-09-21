@@ -90,7 +90,11 @@ export const projects: Project[] = [
       'Interface d’annonces avec recherche, ajout et suppression, enregistrées dans le stockage local du navigateur.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'LocalStorage'],
     links: [
-      { label: 'Code source', url: 'https://github.com/BTS-Projets/APP-Petites_Annonces', kind: 'repository' },
+      {
+        label: 'Code source',
+        url: 'https://github.com/BTS-Projets/APP-Petites_Annonces',
+        kind: 'repository',
+      },
       { label: 'Voir la démo', url: 'https://bts.paulmuller.dev/APP-Petites_Annonces/', kind: 'demo' },
     ],
   }),
@@ -115,7 +119,11 @@ export const projects: Project[] = [
     summary: 'Travail pratique d’initiation à GitHub à partir d’une page web simple.',
     technologies: ['HTML', 'CSS'],
     links: [
-      { label: 'Code source', url: 'https://github.com/BTS-Projets/TP-Decouverte_GitHub', kind: 'repository' },
+      {
+        label: 'Code source',
+        url: 'https://github.com/BTS-Projets/TP-Decouverte_GitHub',
+        kind: 'repository',
+      },
       { label: 'Voir la démo', url: 'https://bts.paulmuller.dev/TP-Decouverte_GitHub/', kind: 'demo' },
     ],
     isLearningExercise: true,
@@ -129,13 +137,24 @@ export const projects: Project[] = [
     period: 'Juin — juillet 2026 · 6 semaines',
     summary:
       'Découverte d’une organisation informatique professionnelle et contribution encadrée à une application web existante.',
-    technologies: ['Python 3', 'SQLAlchemy', 'Poetry', 'Alembic', 'Svelte', 'CSS', 'Tailwind', 'Git', 'GitLab'],
+    technologies: [
+      'Python 3',
+      'SQLAlchemy',
+      'Poetry',
+      'Alembic',
+      'Svelte',
+      'CSS',
+      'Tailwind',
+      'Git',
+      'GitLab',
+    ],
     links: [],
     e5Candidate: true,
     competencyIds: [],
     details: {
       context: 'Stage effectué à Montreuil chez BP2I, entité du groupe BNP Paribas.',
-      objective: 'Découvrir le fonctionnement d’une organisation informatique professionnelle et contribuer à un travail confié par l’équipe.',
+      objective:
+        'Découvrir le fonctionnement d’une organisation informatique professionnelle et contribuer à un travail confié par l’équipe.',
       work: [
         'Mise en place d’un environnement de développement local.',
         'Entraînement en Python 3 avec SQLAlchemy, Poetry et Alembic.',
@@ -214,7 +233,15 @@ export const projects: Project[] = [
     period: 'Terminale STI2D',
     summary:
       'Prototype réalisé en binôme pour distribuer automatiquement des couverts lors du passage d’un plateau et réduire les manipulations.',
-    technologies: ['Arduino Uno', 'C/C++ Arduino', 'Tinkercad', 'LCD I2C', 'LiquidCrystal_I2C', 'Wire', 'PWM'],
+    technologies: [
+      'Arduino Uno',
+      'C/C++ Arduino',
+      'Tinkercad',
+      'LCD I2C',
+      'LiquidCrystal_I2C',
+      'Wire',
+      'PWM',
+    ],
     links: [],
     e5Candidate: false,
     competencyIds: [],

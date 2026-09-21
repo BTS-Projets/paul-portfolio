@@ -1,30 +1,46 @@
 import eslint from '@eslint/js'
+import svelte from 'eslint-plugin-svelte'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
-import pluginVue from 'eslint-plugin-vue'
-import vueParser from 'vue-eslint-parser'
+import svelteConfig from './svelte.config.js'
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules'] },
+  {
+    ignores: ['build/', 'dist/', '.svelte-kit/', 'node_modules/', 'playwright-report/', 'test-results/'],
+  },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
+  ...svelte.configs.recommended,
   {
-    files: ['**/*.{ts,vue}'],
+    files: ['**/*.{ts,svelte}'],
     languageOptions: {
-      globals: globals.browser,
-      parser: vueParser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parserOptions: {
+        projectService: {
+          allowDefaultProject: ['playwright.config.ts'],
+        },
+        extraFileExtensions: ['.svelte'],
         parser: tseslint.parser,
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        extraFileExtensions: ['.vue'],
       },
     },
     rules: {
-      'vue/multi-word-component-names': 'off',
-      'vue/require-default-prop': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
+    },
+  },
+  {
+    files: ['**/*.svelte'],
+    languageOptions: {
+      parserOptions: {
+        svelteConfig,
+        projectService: {
+          allowDefaultProject: ['playwright.config.ts'],
+        },
+        extraFileExtensions: ['.svelte'],
+        parser: tseslint.parser,
+      },
     },
   },
 )
