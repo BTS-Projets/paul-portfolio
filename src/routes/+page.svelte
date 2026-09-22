@@ -12,12 +12,12 @@
 </script>
 
 <svelte:head>
-  <title>Paul Muller | Portfolio | BTS SIO SLAM</title>
+  <title>Paul Muller - Portfolio | BTS SIO SLAM</title>
   <meta
     name="description"
     content="Portfolio professionnel de Paul Muller, étudiant en BTS SIO option SLAM : parcours, compétences, expérience et veille technologique."
   />
-  <meta property="og:title" content="Paul Muller — Portfolio | BTS SIO SLAM" />
+  <meta property="og:title" content="Paul Muller - Portfolio | BTS SIO SLAM" />
   <meta
     property="og:description"
     content="Parcours, compétences et professionnalisation en BTS SIO option SLAM."

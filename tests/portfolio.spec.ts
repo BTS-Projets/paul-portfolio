@@ -19,7 +19,7 @@ test('charge le portfolio et permet la navigation depuis la sidebar', async ({ p
 
   const expectNoBrowserErrors = monitorBrowserErrors(page)
   await page.goto('/')
-  await expect(page).toHaveTitle('Paul Muller — Portfolio | BTS SIO SLAM')
+  await expect(page).toHaveTitle('Paul Muller - Portfolio | BTS SIO SLAM')
   await expect(page.getByRole('heading', { level: 1, name: 'Paul Muller' })).toBeVisible()
 
   const sidebar = page.locator('.site-sidebar')
