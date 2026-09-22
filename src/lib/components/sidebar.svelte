@@ -112,7 +112,7 @@
     </a>
   </div>
   <div class="sidebar-footer">
-    <p>Portfolio · 2025 — 2027</p>
+    <p>Portfolio · 2025 → 2027</p>
   </div>
 </aside>
 

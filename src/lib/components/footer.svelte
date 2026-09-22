@@ -6,7 +6,7 @@
   <div class="footer-shell">
     <div>
       <strong>{profile.name}</strong>
-      <p>Portfolio professionnel · BTS SIO option SLAM · 2025 — 2027</p>
+      <p>Portfolio professionnel · BTS SIO option SLAM · 2025 → 2027</p>
     </div>
     <div class="footer-links">
       <a href="#accueil">Retour en haut</a>

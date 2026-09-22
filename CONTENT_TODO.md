@@ -10,4 +10,4 @@ Cette liste regroupe uniquement les informations encore absentes ou à valider a
 - Créer les pages `/experiences/<slug>` uniquement lorsque leur contenu public détaillé sera disponible.
 - Définir le projet professionnel après le BTS dans `src/lib/data/profil.ts`.
 
-Les données confirmées dans le brief — domaine `paulmuller.dev`, spécialité SIN, établissements, périodes et adresse email professionnelle — sont déjà intégrées.
+Les données confirmées dans le brief - domaine `paulmuller.dev`, spécialité SIN, établissements, périodes et adresse email professionnelle - sont déjà intégrées.
