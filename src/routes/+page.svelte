@@ -12,7 +12,6 @@
 </script>
 
 <svelte:head>
-  <title>Paul Muller - Portfolio | BTS SIO SLAM</title>
   <meta
     name="description"
     content="Portfolio professionnel de Paul Muller, étudiant en BTS SIO option SLAM : parcours, compétences, expérience et veille technologique."

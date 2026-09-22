@@ -6,7 +6,7 @@ export const experiences: Experience[] = [
     organization: 'BP2I',
     title: 'Stage de première année',
     location: 'Montreuil',
-    period: 'Juin — juillet 2026',
+    period: 'Juin - juillet 2026',
     duration: '6 semaines',
     context: 'BP2I, entité du groupe BNP Paribas.',
     summary:

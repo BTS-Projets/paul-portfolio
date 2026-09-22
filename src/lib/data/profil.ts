@@ -3,8 +3,8 @@ import type { Profile } from '../types/models'
 export const profile: Profile = {
   name: 'Paul Muller',
   currentEducation: 'BTS Services Informatiques aux Organisations',
-  option: 'Option SLAM — Solutions Logicielles et Applications Métiers',
-  period: '2025 — 2027',
+  option: 'Option SLAM - Solutions Logicielles et Applications Métiers',
+  period: '2025 - 2027',
   introduction:
     'Étudiant en BTS SIO option SLAM, je développe des applications web et logicielles dans le cadre de ma formation et de projets personnels.',
   about: [
