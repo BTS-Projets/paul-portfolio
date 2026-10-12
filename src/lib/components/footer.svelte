@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { profile } from '$lib/data/profil'
+  import { profile } from '#lib/data/profil.js'
 </script>
 
 <footer class="site-footer">

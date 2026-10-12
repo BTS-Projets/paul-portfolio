@@ -6,13 +6,15 @@ Les réalisations BTS détaillées sont présentées séparément sur [bts.paulm
 
 ## Stack
 
-- Svelte 5 et SvelteKit 2 avec runes
+- Svelte 5 et SvelteKit 3 avec runes
 - TypeScript strict et Vite
 - `@sveltejs/adapter-static`
 - CSS natif
 - ESLint, Prettier et `svelte-check`
 - Playwright pour les parcours E2E critiques
 - GitHub Pages
+
+La migration SvelteKit 3 requiert Node.js 22.17 ou supérieur (la CI utilise Node 24). La configuration SvelteKit se trouve dans `vite.config.ts` et les imports de modules internes utilisent `#lib`.
 
 ## Commandes
 

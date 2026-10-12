@@ -1,6 +1,6 @@
 <script lang="ts">
-  import SectionHeader from '$lib/components/sectionHeader.svelte'
-  import { education } from '$lib/data/formations'
+  import SectionHeader from '#lib/components/sectionHeader.svelte'
+  import { education } from '#lib/data/formations.js'
 </script>
 
 <section id="parcours" class="content-section section-shell" aria-labelledby="journey-title">

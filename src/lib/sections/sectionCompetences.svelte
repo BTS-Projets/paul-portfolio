@@ -1,7 +1,7 @@
 <script lang="ts">
-  import SectionHeader from '$lib/components/sectionHeader.svelte'
-  import { skills } from '$lib/data/competences'
-  import type { Skill } from '$lib/types/models'
+  import SectionHeader from '#lib/components/sectionHeader.svelte'
+  import { skills } from '#lib/data/competences.js'
+  import type { Skill } from '#lib/types/models.js'
 
   const skillsByCategory: Record<string, Skill[]> = {}
   for (const skill of skills) {

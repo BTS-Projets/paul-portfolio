@@ -1,6 +1,6 @@
 <script lang="ts">
-  import SectionHeader from '$lib/components/sectionHeader.svelte'
-  import { watchConfig, watchEntries } from '$lib/data/veille'
+  import SectionHeader from '#lib/components/sectionHeader.svelte'
+  import { watchConfig, watchEntries } from '#lib/data/veille.js'
 </script>
 
 <section id="veille" class="content-section section-shell" aria-labelledby="watch-title">

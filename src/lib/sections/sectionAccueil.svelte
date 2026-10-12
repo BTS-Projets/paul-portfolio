@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { profile } from '$lib/data/profil'
+  import { profile } from '#lib/data/profil.js'
 </script>
 
 <section id="accueil" class="hero section-shell" aria-labelledby="hero-title">

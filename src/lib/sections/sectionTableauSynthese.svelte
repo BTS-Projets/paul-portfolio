@@ -1,8 +1,8 @@
 <script lang="ts">
   import { asset } from '$app/paths'
-  import SectionHeader from '$lib/components/sectionHeader.svelte'
+  import SectionHeader from '#lib/components/sectionHeader.svelte'
 
-  const pdfUrl = asset('/documents/tableau-synthese-e5.pdf')
+  const pdfUrl = asset('documents/tableau-synthese-e5.pdf')
 </script>
 
 <section

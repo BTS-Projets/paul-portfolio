@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Footer from '$lib/components/footer.svelte'
-  import Sidebar from '$lib/components/sidebar.svelte'
-  import SectionAccueil from '$lib/sections/sectionAccueil.svelte'
-  import SectionAPropos from '$lib/sections/sectionAPropos.svelte'
-  import SectionCompetences from '$lib/sections/sectionCompetences.svelte'
-  import SectionContact from '$lib/sections/sectionContact.svelte'
-  import SectionExperiences from '$lib/sections/sectionExperiences.svelte'
-  import SectionParcours from '$lib/sections/sectionParcours.svelte'
-  import SectionTableauSynthese from '$lib/sections/sectionTableauSynthese.svelte'
-  import SectionVeille from '$lib/sections/sectionVeille.svelte'
+  import Footer from '#lib/components/footer.svelte'
+  import Sidebar from '#lib/components/sidebar.svelte'
+  import SectionAccueil from '#lib/sections/sectionAccueil.svelte'
+  import SectionAPropos from '#lib/sections/sectionAPropos.svelte'
+  import SectionCompetences from '#lib/sections/sectionCompetences.svelte'
+  import SectionContact from '#lib/sections/sectionContact.svelte'
+  import SectionExperiences from '#lib/sections/sectionExperiences.svelte'
+  import SectionParcours from '#lib/sections/sectionParcours.svelte'
+  import SectionTableauSynthese from '#lib/sections/sectionTableauSynthese.svelte'
+  import SectionVeille from '#lib/sections/sectionVeille.svelte'
 </script>
 
 <svelte:head>

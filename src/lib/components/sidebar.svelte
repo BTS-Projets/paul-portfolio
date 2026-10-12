@@ -1,20 +1,19 @@
 <script lang="ts">
-  import { resolve } from '$app/paths'
   import { onMount } from 'svelte'
 
   const navigation = [
-    { id: 'accueil', label: 'Accueil', href: resolve('/#accueil') },
-    { id: 'a-propos', label: 'À propos', href: resolve('/#a-propos') },
-    { id: 'parcours', label: 'Parcours', href: resolve('/#parcours') },
-    { id: 'competences', label: 'Compétences', href: resolve('/#competences') },
-    { id: 'experience', label: 'Expériences', href: resolve('/#experience') },
-    { id: 'veille', label: 'Veille technologique', href: resolve('/#veille') },
+    { id: 'accueil', label: 'Accueil', href: '#accueil' },
+    { id: 'a-propos', label: 'À propos', href: '#a-propos' },
+    { id: 'parcours', label: 'Parcours', href: '#parcours' },
+    { id: 'competences', label: 'Compétences', href: '#competences' },
+    { id: 'experience', label: 'Expériences', href: '#experience' },
+    { id: 'veille', label: 'Veille technologique', href: '#veille' },
     {
       id: 'tableau-synthese',
       label: 'Tableau de synthèse',
-      href: resolve('/#tableau-synthese'),
+      href: '#tableau-synthese',
     },
-    { id: 'contact', label: 'Contact', href: resolve('/#contact') },
+    { id: 'contact', label: 'Contact', href: '#contact' },
   ] as const
 
   let activeSection = $state('accueil')
@@ -78,7 +77,7 @@
 </script>
 
 {#snippet identity()}
-  <a class="site-identity" href={resolve('/#accueil')} aria-label="Accueil du portfolio de Paul Muller">
+  <a class="site-identity" href="#accueil" aria-label="Accueil du portfolio de Paul Muller">
     <span class="identity-mark" aria-hidden="true">PM</span>
     <span>
       <strong>Paul Muller</strong>

@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { resolve } from '$app/paths'
-  import SectionHeader from '$lib/components/sectionHeader.svelte'
-  import { experiences } from '$lib/data/experiences'
+  import SectionHeader from '#lib/components/sectionHeader.svelte'
+  import { experiences } from '#lib/data/experiences.js'
 </script>
 
 <section id="experience" class="content-section section-shell" aria-labelledby="experience-title">
@@ -37,7 +36,7 @@
         </div>
         {#if experience.detailPath}
           <footer class="experience-footer">
-            <a class="text-link" href={resolve(experience.detailPath as '/')}
+            <a class="text-link" href={experience.detailPath}
               >Voir l’expérience <span aria-hidden="true">→</span></a
             >
           </footer>
