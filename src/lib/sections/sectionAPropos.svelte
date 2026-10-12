@@ -1,6 +1,6 @@
 <script lang="ts">
-  import SectionHeader from '$lib/components/sectionHeader.svelte'
-  import { profile } from '$lib/data/profil'
+  import SectionHeader from '#lib/components/sectionHeader.svelte'
+  import { profile } from '#lib/data/profil.js'
 </script>
 
 <section id="a-propos" class="content-section section-shell" aria-labelledby="about-title">

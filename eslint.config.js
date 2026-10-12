@@ -2,7 +2,6 @@ import eslint from '@eslint/js'
 import svelte from 'eslint-plugin-svelte'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
-import svelteConfig from './svelte.config.js'
 
 export default tseslint.config(
   {
@@ -19,9 +18,6 @@ export default tseslint.config(
         ...globals.node,
       },
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ['playwright.config.ts'],
-        },
         extraFileExtensions: ['.svelte'],
         parser: tseslint.parser,
       },
@@ -34,10 +30,6 @@ export default tseslint.config(
     files: ['**/*.svelte'],
     languageOptions: {
       parserOptions: {
-        svelteConfig,
-        projectService: {
-          allowDefaultProject: ['playwright.config.ts'],
-        },
         extraFileExtensions: ['.svelte'],
         parser: tseslint.parser,
       },
