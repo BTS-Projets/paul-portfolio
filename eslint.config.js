@@ -18,9 +18,6 @@ export default tseslint.config(
         ...globals.node,
       },
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ['playwright.config.ts'],
-        },
         extraFileExtensions: ['.svelte'],
         parser: tseslint.parser,
       },
@@ -33,9 +30,6 @@ export default tseslint.config(
     files: ['**/*.svelte'],
     languageOptions: {
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ['playwright.config.ts'],
-        },
         extraFileExtensions: ['.svelte'],
         parser: tseslint.parser,
       },
