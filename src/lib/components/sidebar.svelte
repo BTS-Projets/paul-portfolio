@@ -77,6 +77,7 @@
 </script>
 
 {#snippet identity()}
+  <!-- eslint-disable svelte/no-navigation-without-resolve -- This is an in-page hash, not a routed pathname. -->
   <a class="site-identity" href="#accueil" aria-label="Accueil du portfolio de Paul Muller">
     <span class="identity-mark" aria-hidden="true">PM</span>
     <span>
@@ -84,10 +85,12 @@
       <small>BTS SIO · SLAM</small>
     </span>
   </a>
+  <!-- eslint-enable svelte/no-navigation-without-resolve -->
 {/snippet}
 
 {#snippet navigationLinks(mobile = false)}
   <nav class="side-navigation" aria-label="Navigation principale">
+    <!-- eslint-disable svelte/no-navigation-without-resolve -- All navigation links target in-page section hashes. -->
     {#each navigation as item (item.id)}
       <a
         href={item.href}
@@ -98,6 +101,7 @@
         {item.label}
       </a>
     {/each}
+    <!-- eslint-enable svelte/no-navigation-without-resolve -->
   </nav>
 {/snippet}
 

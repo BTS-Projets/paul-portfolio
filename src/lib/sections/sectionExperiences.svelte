@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
   import SectionHeader from '#lib/components/sectionHeader.svelte'
   import { experiences } from '#lib/data/experiences.js'
 </script>
@@ -36,7 +37,7 @@
         </div>
         {#if experience.detailPath}
           <footer class="experience-footer">
-            <a class="text-link" href={experience.detailPath}
+            <a class="text-link" href={resolve(experience.detailPath as '/')}
               >Voir l’expérience <span aria-hidden="true">→</span></a
             >
           </footer>
