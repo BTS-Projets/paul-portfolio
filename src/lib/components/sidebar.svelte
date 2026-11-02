@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
   import { onMount } from 'svelte'
 
   const navigation = [
@@ -77,7 +78,7 @@
 </script>
 
 {#snippet identity()}
-  <a class="site-identity" href="#accueil" aria-label="Accueil du portfolio de Paul Muller">
+  <a class="site-identity" href={resolve('/') + '#accueil'} aria-label="Accueil du portfolio de Paul Muller">
     <span class="identity-mark" aria-hidden="true">PM</span>
     <span>
       <strong>Paul Muller</strong>
